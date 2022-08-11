@@ -3,6 +3,8 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons';
 import { MantineLogo } from '@mantine/ds';
 
+import ColorSchemeSegmentedToggle from '../ColorSchemeToggle/ColorSchemeSegmentedToggle';
+
 const useStyles = createStyles((theme) => ({
   header: {
     paddingLeft: theme.spacing.md,
@@ -24,6 +26,12 @@ const useStyles = createStyles((theme) => ({
 
   search: {
     [theme.fn.smallerThan('xs')]: {
+      display: 'none',
+    },
+  },
+  
+  colorSchemeToggle: {
+    [theme.fn.smallerThan('md')]: {
       display: 'none',
     },
   },
@@ -81,6 +89,9 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
             icon={<IconSearch size={16} stroke={1.5} />}
             data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
           />
+          <Group className={classes.colorSchemeToggle}>
+          <ColorSchemeSegmentedToggle />
+          </Group>
         </Group>
       </div>
     </Header>
