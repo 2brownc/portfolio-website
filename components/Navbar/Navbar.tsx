@@ -4,6 +4,7 @@ import { IconSearch } from '@tabler/icons';
 import { MantineLogo } from '@mantine/ds';
 
 import ColorSchemeSegmentedToggle from '../ColorSchemeToggle/ColorSchemeSegmentedToggle';
+import Logo from '../Logo/Logo';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -76,7 +77,7 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
       <div className={classes.inner}>
         <Group>
           <Burger opened={opened} onClick={toggle} size="sm" />
-          <MantineLogo size={28} />
+          <Logo />
         </Group>
 
         <Group>
