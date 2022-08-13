@@ -1,6 +1,6 @@
 .hoverwrap {
   position: relative;
-  max-width: 500px;
+}
 
 .hoverwrap img { width: 100%; }
 
@@ -14,6 +14,8 @@
  
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  
+  font-weight: bold;
 }
 
 .hovercap {

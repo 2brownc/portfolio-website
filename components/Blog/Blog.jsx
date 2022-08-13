@@ -3,10 +3,15 @@ import {
   Container,
   Image,
   Text,
+  Anchor,
 } from '@mantine/core';
+
+import ImageCredit from '../../styles/ImageCredit.module.css'
 
 export default function BlogLayout({
   cover,
+  coverCredit,
+  coverCreditLink,
   title,
   author,
   publishedOn,
@@ -16,11 +21,21 @@ export default function BlogLayout({
   return (
   <Container size="md" px="xs">
     <Stack spacing="xs">
-      <Container p={0}>
-        <Image
-          radius="md"
-          src={cover}
-        />
+      <Container>
+        <div className={ImageCredit.hoverwrap}>
+          <Image
+            src={cover}
+          />
+          {coverCredit
+            && coverCreditLink
+            &&
+            <div className={ImageCredit.hovercap}>
+              <Anchor href={coverCreditLink} target="_blank">
+                @{coverCredit}
+              </Anchor>
+            </div>
+          }
+        </div>
       </Container>
 
       <Container>

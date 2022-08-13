@@ -11,6 +11,8 @@ export const Blog = defineDocumentType(() => ({
     publishedOn: { type: 'string', required: true },
     description: { type: 'string', required: true },
     cover: { type: 'string', required: true },
+    coverCredit: { type: 'string', required: true },
+    coverCreditLink: { type: 'string', required: true },
   },
   computedFields: {
     readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
