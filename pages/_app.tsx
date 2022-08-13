@@ -17,20 +17,20 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     setColorScheme(nextColorScheme);
     setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
-  
+
   const links = [
     {
-      label:'Home',
-      link:'/'
+      label: 'Home',
+      link: '/',
     },
     {
-      label:'Blog',
-      link:'/blog'
+      label: 'Blog',
+      link: '/blog',
     },
     {
-      label:'Resume',
-      link:'/resume'
-    }
+      label: 'Resume',
+      link: '/resume',
+    },
   ];
 
   return (
@@ -40,11 +40,11 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
-    
+
       <main>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-        <Navbar links={links}/>
+        <Navbar links={links} />
         </MantineProvider>
       </ColorSchemeProvider>
       </main>

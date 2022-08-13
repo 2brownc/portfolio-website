@@ -1,0 +1,25 @@
+.hoverwrap {
+  position: relative;
+  max-width: 500px;
+
+.hoverwrap img { width: 100%; }
+
+.hovercap {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+ 
+  position: absolute;
+  bottom: 0; left: 0;
+ 
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.hovercap {
+  visibility: none; opacity: 0;
+  transition: opacity 0.3s;
+}
+.hoverwrap:hover .hovercap {
+  visibility: visible; opacity: 1;
+}
