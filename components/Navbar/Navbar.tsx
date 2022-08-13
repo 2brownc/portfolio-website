@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
-  
+
   colorSchemeToggle: {
     [theme.fn.smallerThan('md')]: {
       display: 'none',
