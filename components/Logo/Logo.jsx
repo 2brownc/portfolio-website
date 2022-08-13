@@ -3,9 +3,9 @@ import { IconBrandTabler } from '@tabler/icons';
 
 export default function () {
   return (
-    <div style={{display: "flex"}}>
+    <div style={{ display: 'flex' }}>
       <ThemeIcon><IconBrandTabler /></ThemeIcon>
-      <Space w="xs"/>
+      <Space w="xs" />
       <Text>Brown's Site</Text>
     </div>
   );
