@@ -24,6 +24,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       link: '/',
     },
     {
+      label: 'Projects',
+      link: '/projects',
+    },
+    {
       label: 'Blog',
       link: '/blog',
     },
@@ -41,17 +45,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
-      <main>
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-        <Navbar links={links} />
-        </MantineProvider>
-      </ColorSchemeProvider>
-      </main>
-
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
+            <Navbar links={links} />
             <Component {...pageProps} />
           </NotificationsProvider>
         </MantineProvider>
