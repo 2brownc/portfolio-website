@@ -19,54 +19,54 @@ export default function BlogLayout({
   children,
 }) {
   return (
-  <Container size="md" px="xs">
-    <Stack spacing="xs">
-      <Container>
-        <div className={ImageCredit.hoverwrap}>
-          <Image
-            src={cover}
-          />
-          {coverCredit
-            && coverCreditLink
-            &&
-            <div className={ImageCredit.hovercap}>
-              <Anchor href={coverCreditLink} target="_blank">
-                @{coverCredit}
-              </Anchor>
-            </div>
-          }
-        </div>
-      </Container>
+    <Container size="md" px="xs" pt={20}>
+      <Stack spacing="xs">
+        <Container fluid>
+          <div className={ImageCredit.hoverwrap}>
+            <Image
+              src={cover}
+            />
+            {coverCredit
+              && coverCreditLink
+              &&
+              <div className={ImageCredit.hovercap}>
+                <Anchor href={coverCreditLink} target="_blank">
+                  @{coverCredit}
+                </Anchor>
+              </div>
+            }
+          </div>
+        </Container>
 
-      <Container>
-      <Stack>
-        <h1>{title}</h1>
-        <Text
-          variant="uppercase"
-          size="sm"
-          align="center"
-        >
-          {author}
-        </Text>
-        <Text
-          size="sm"
-          align="center"
-        >
-          {publishedOn}
-        </Text>
+        <Container fluid>
+          <Stack>
+            <h1>{title}</h1>
+            <Text
+              variant="uppercase"
+              size="sm"
+              align="center"
+            >
+              {author}
+            </Text>
+            <Text
+              size="sm"
+              align="center"
+            >
+              {publishedOn}
+            </Text>
+          </Stack>
+        </Container>
+
+        <Container>
+          <Stack>
+            <Text italic>{description}</Text>
+            <Text>
+              {children}
+            </Text>
+          </Stack>
+        </Container>
+
       </Stack>
-      </Container>
-
-      <Container>
-        <Stack>
-        <Text italic>{description}</Text>
-        <Text>
-          {children}
-        </Text>
-        </Stack>
-      </Container>
-
-    </Stack>
-  </Container>
+    </Container>
   );
 }

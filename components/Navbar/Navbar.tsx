@@ -1,7 +1,10 @@
+import { useState } from 'react';
+import Link from 'next/link'
+import { useRouter } from 'next/router';
+
 import { createStyles, Header, Autocomplete, Group, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons';
-import { MantineLogo } from '@mantine/ds';
 
 import ColorSchemeSegmentedToggle from '../ColorSchemeToggle/ColorSchemeSegmentedToggle';
 import Logo from '../Logo/Logo';
@@ -51,6 +54,13 @@ const useStyles = createStyles((theme) => ({
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     },
   },
+
+  linkActive: {
+    '&, &:hover': {
+      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
+      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+    },
+  },
 }));
 
 interface HeaderSearchProps {
@@ -59,21 +69,34 @@ interface HeaderSearchProps {
 
 export default function HeaderSearch({ links }: HeaderSearchProps) {
   const [opened, { toggle }] = useDisclosure(false);
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
+  const [active, setActive] = useState(links[0].link);
+  const router = useRouter();
 
   const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.label}
-    </a>
+    <Link href={link.link} key={link.link}>
+      <a
+        className={
+          cx(classes.link,
+            {
+              [classes.linkActive]: link.link === '/'
+                ? router.pathname === link.link
+                : router.pathname.startsWith(link.link)
+            }
+          )
+        }
+        onClick={() => {
+          setActive(link.link);
+          close();
+        }}
+      >
+        {link.label}
+      </a>
+    </Link>
   ));
 
   return (
-    <Header height={56} className={classes.header} mb={120}>
+    <Header height={56} className={classes.header}>
       <div className={classes.inner}>
         <Group>
           <Burger opened={opened} onClick={toggle} size="sm" />
@@ -91,7 +114,7 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
             data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
           />
           <Group className={classes.colorSchemeToggle}>
-          <ColorSchemeSegmentedToggle />
+            <ColorSchemeSegmentedToggle />
           </Group>
         </Group>
       </div>
