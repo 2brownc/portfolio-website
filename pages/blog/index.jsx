@@ -34,13 +34,10 @@ function BlogCard({
   const normalShadow = '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 36px 28px -7px, rgba(0, 0, 0, 0.04) 0px 17px 17px -7px';
   const hoverShadow = '0 1px 3px rgba(178, 236, 255, 0.15), rgba(178, 236, 255, 0.15) 0px 36px 28px -7px, rgba(178, 236, 255, 0.14) 0px 17px 17px -7px';
 
-  const cardShadow = () => {
-    return hovered ? hoverShadow : normalShadow
-  }
+
 
   return (
     <Card
-      shadow="lg"
       p="lg"
       radius="xs"
       ref={ref}
@@ -86,7 +83,6 @@ function BlogCard({
 }
 
 export default function Projects() {
-  console.log("ALL BLOG", allBlogs);
   return (
     <Container pt={20}>
       <Title
@@ -99,7 +95,10 @@ export default function Projects() {
       <Stack>
         {
           allBlogs.map((blog) => (
-            <BlogCard key={blog._id} {...blog} />
+            <BlogCard
+              key={blog._id}
+              {...blog}
+            />
           ))
         }
       </Stack>
