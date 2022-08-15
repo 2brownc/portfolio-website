@@ -9,9 +9,9 @@ export default function ProjectLayout({ title, description, repoLink, appLink, c
   return (
     <Container>
       <Grid>
-        <Grid.col span={4}>
-          Nothing here. Move along, pal.
-        </Grid.col>
+        <Grid.Col span={4}>
+          "coming soon"
+        </Grid.Col>
       </Grid>
     </Container>
   );
