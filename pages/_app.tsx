@@ -7,6 +7,9 @@ import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core
 import { NotificationsProvider } from '@mantine/notifications';
 
 import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
+
+import AppStyles from '../styles/App.module.css';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -18,7 +21,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
 
-  const links = [
+  const headerLinks = [
     {
       label: 'Home',
       link: '/',
@@ -37,6 +40,25 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     },
   ];
 
+  const footerLinks = [
+    {
+      "link": "/",
+      "label": "Home"
+    },
+    {
+      "link": "/projects",
+      "label": "Projects"
+    },
+    {
+      "link": "/blog",
+      "label": "Blog"
+    },
+    {
+      "link": "/resume",
+      "label": "Resume"
+    },
+  ]
+
   return (
     <>
       <Head>
@@ -48,8 +70,15 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <Navbar links={links} />
-            <Component {...pageProps} />
+            <div className={AppStyles.page}>
+              <div className={AppStyles.app}>
+                <Navbar links={headerLinks} />
+                <div className={AppStyles.main}>
+                  <Component {...pageProps} />
+                </div>
+                <Footer links={footerLinks} />
+              </div>
+            </div>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
