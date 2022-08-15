@@ -4,6 +4,7 @@ import {
   Image,
   Text,
   Anchor,
+  Title
 } from '@mantine/core';
 
 import ImageCredit from '../../styles/ImageCredit.module.css'
@@ -19,7 +20,7 @@ export default function BlogLayout({
   children,
 }) {
   return (
-    <Container size="md" px="xs" pt={20}>
+    <Container size="md" px="xs" py={20}>
       <Stack spacing="xs">
         <Container fluid>
           <div className={ImageCredit.hoverwrap}>
@@ -38,9 +39,9 @@ export default function BlogLayout({
           </div>
         </Container>
 
-        <Container fluid>
-          <Stack>
-            <h1>{title}</h1>
+        <Container mt={10} fluid>
+          <Stack spacing={0}>
+            <Title>{title}</Title>
             <Text
               variant="uppercase"
               size="sm"
@@ -57,15 +58,14 @@ export default function BlogLayout({
           </Stack>
         </Container>
 
-        <Container>
+        <Container mt={10} fluid>
           <Stack>
-            <Text italic>{description}</Text>
+            <Text align="center" italic>{description}</Text>
             <Text>
               {children}
             </Text>
           </Stack>
         </Container>
-
       </Stack>
     </Container>
   );
