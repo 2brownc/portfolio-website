@@ -12,12 +12,12 @@ export default function NotFound() {
   return (
     <Center
       sx={{
-        height: "90vh",
+        height: "80vh",
         width: "100vw"
       }}
     >
       <Stack align="center">
-        <Title>404 - Not Found</Title>
+        <Title>404 - Page Not Found</Title>
         <div>
           <Link href="/">
             <Button
