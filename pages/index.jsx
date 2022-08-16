@@ -38,11 +38,17 @@ export default function IndexPage() {
                 </Title>
                 <Text
                   size="lg"
+                  align="center"
                 >
                   Hi! I am a software developer.
-                  Look around my website and get to know me more.
                 </Text>
 
+                <Text
+                  size="md"
+                  align="center"
+                >
+                  Look around my website and get to know me more.
+                </Text>
               </Stack>
             </Stack>
           </Grid.Col>
