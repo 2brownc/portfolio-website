@@ -1,0 +1,12 @@
+.main {
+  height: 80vh;
+}
+
+.card {
+  min-width: 50vw;
+}
+
+.buttonGroup {
+  max-width: 60%;
+}
+
