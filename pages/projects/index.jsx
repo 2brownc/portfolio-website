@@ -105,7 +105,7 @@ export default function Projects() {
     { minWidth: 601, cols: 2, spacing: 'md' },
   ]
   return (
-    <Container pt={20}>
+    <Container py={20}>
       <Title
         order={1}
         align="center"
