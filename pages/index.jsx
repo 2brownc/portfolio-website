@@ -56,7 +56,7 @@ export default function IndexPage() {
                 </Link>
                 <Link href="/resume">
                   <Button>
-                    View my Resume / Contact Info
+                    View Resume / Contact Info
                   </Button>
                 </Link>
                 <Link href="/blog">
