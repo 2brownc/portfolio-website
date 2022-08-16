@@ -99,7 +99,7 @@ function ProjectCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({ projects }) {
   const breakpoints = [
     { maxWidth: 600, cols: 1, spacing: 'sm' },
     { minWidth: 601, cols: 2, spacing: 'md' },
@@ -115,11 +115,19 @@ export default function Projects() {
       </Title>
       <SimpleGrid breakpoints={breakpoints}>
         {
-          allProjects.map((project) => (
+          projects.map((project) => (
             <ProjectCard {...project} />
           ))
         }
       </SimpleGrid>
     </Container>
   )
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      projects: allProjects
+    }
+  }
 }
