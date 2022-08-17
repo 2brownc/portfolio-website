@@ -8,6 +8,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 import AppStyles from '../styles/App.module.css';
 
@@ -67,6 +68,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
+      <GoogleAnalytics />
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
