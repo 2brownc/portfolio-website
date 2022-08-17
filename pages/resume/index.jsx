@@ -104,6 +104,23 @@ export default function Resume() {
             order={2}
             align="center"
           >
+            Skills
+          </Title>
+          <List>
+            <List.Item>
+              HTML, CSS, Javascript
+            </List.Item>
+            <List.Item>
+              NodeJS, ReactJS, NextJS
+            </List.Item>
+          </List>
+        </Stack>
+
+        <Stack spacing="xl">
+          <Title
+            order={2}
+            align="center"
+          >
             Projects
           </Title>
 
