@@ -30,9 +30,6 @@ export default function IndexPage() {
                 <Title
                   order={1}
                   mb={0}
-                  styles={(theme) => ({
-                    fontFamily: "monospace"
-                  })}
                 >
                   Brown Chinta
                 </Title>

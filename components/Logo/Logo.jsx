@@ -1,12 +1,12 @@
 import { Text, Space, ThemeIcon } from '@mantine/core';
 import { IconBrandTabler } from '@tabler/icons';
 
-export default function () {
+export default function Logo() {
   return (
     <div style={{ display: 'flex' }}>
       <ThemeIcon><IconBrandTabler /></ThemeIcon>
       <Space w="xs" />
-      <Text>Brown's Site</Text>
+      <Text>Brown&apos;s Site</Text>
     </div>
   );
 }

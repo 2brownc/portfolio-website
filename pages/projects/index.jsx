@@ -26,7 +26,6 @@ function ProjectCard({
   body
 }) {
   const MDXContent = useMDXComponent(body.code);
-  console.log("tech stack", techStack, techStack.split(','))
   return (
     <Card
       shadow="sm"

@@ -42,22 +42,22 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   const footerLinks = [
     {
-      "link": "/",
-      "label": "Home"
+      link: '/',
+      label: 'Home',
     },
     {
-      "link": "/projects",
-      "label": "Projects"
+      link: '/projects',
+      label: 'Projects',
     },
     {
-      "link": "/blog",
-      "label": "Blog"
+      link: '/blog',
+      label: 'Blog',
     },
     {
-      "link": "/resume",
-      "label": "Resume"
+      link: '/resume',
+      label: 'Resume',
     },
-  ]
+  ];
 
   return (
     <>

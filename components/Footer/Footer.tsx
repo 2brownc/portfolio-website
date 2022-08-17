@@ -1,9 +1,9 @@
-import { createStyles, Anchor, Group, ActionIcon } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons';
-import { MantineLogo } from '@mantine/ds';
+import { createStyles, Anchor, Group } from '@mantine/core';
+// import { ActionIcon } from '@mantine/core';
+// import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons';
 import Link from 'next/link';
 
-import Logo from '../Logo/Logo';
+// import Logo from '../Logo/Logo';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -40,6 +40,7 @@ export default function FooterCentered({ links }: FooterCenteredProps) {
     <Link
       href={link.link}
       key={link.label}
+      passHref
     >
       <Anchor<'a'>
         color="dimmed"

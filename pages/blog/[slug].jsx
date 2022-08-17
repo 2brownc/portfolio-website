@@ -1,13 +1,8 @@
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { allBlogs } from 'contentlayer/generated';
-import type { Blog } from 'contentlayer/types';
 import BlogLayout from '../../components/Blog/Blog';
 
-type BlogProps = {
-  blog: Blog
-};
-
-export default function Blog({ blog }: BlogProps) {
+export default function Blog({ blog }) {
   const MDXContent = useMDXComponent(blog.body.code);
 
   return (

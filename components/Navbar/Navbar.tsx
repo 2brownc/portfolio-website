@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import Link from 'next/link'
+// import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { createStyles, Header, Autocomplete, Group, Burger } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconSearch } from '@tabler/icons';
+import { createStyles, Header, Group } from '@mantine/core';
+// import { Autocomplete, Burger } from '@mantine/core';
+// import { useDisclosure } from '@mantine/hooks';
+// import { IconSearch } from '@tabler/icons';
 
 import ColorSchemeSegmentedToggle from '../ColorSchemeToggle/ColorSchemeSegmentedToggle';
 import Logo from '../Logo/Logo';
@@ -68,9 +69,8 @@ interface HeaderSearchProps {
 }
 
 export default function HeaderSearch({ links }: HeaderSearchProps) {
-  const [opened, { toggle }] = useDisclosure(false);
+  // const [opened, { toggle }] = useDisclosure(false);
   const { classes, cx } = useStyles();
-  const [active, setActive] = useState(links[0].link);
   const router = useRouter();
 
   const items = links.map((link) => (
@@ -81,14 +81,10 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
             {
               [classes.linkActive]: link.link === '/'
                 ? router.pathname === link.link
-                : router.pathname.startsWith(link.link)
+                : router.pathname.startsWith(link.link),
             }
           )
         }
-        onClick={() => {
-          setActive(link.link);
-          close();
-        }}
       >
         {link.label}
       </a>
@@ -99,7 +95,7 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
     <Header height={56} className={classes.header}>
       <div className={classes.inner}>
         <Group>
-          <Burger opened={opened} onClick={toggle} size="sm" />
+          {/* <Burger opened={opened} onClick={toggle} size="sm" /> */}
           <Logo />
         </Group>
 
