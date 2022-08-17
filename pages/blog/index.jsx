@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useHover } from '@mantine/hooks';
 
 import {
-  Card,
+  Paper,
   Text,
   Grid,
   Image,
@@ -30,48 +30,54 @@ function BlogCard({
   const hoverShadow = '0 1px 3px rgba(178, 236, 255, 0.15), rgba(178, 236, 255, 0.15) 0px 36px 28px -7px, rgba(178, 236, 255, 0.14) 0px 17px 17px -7px';
 
   return (
-    <Card
-      p="lg"
-      radius="xs"
-      ref={ref}
-      withBorder
-      shadow={hovered ? hoverShadow : normalShadow}
-    >
-      <Grid>
-        <Grid.Col xs={4}>
-          <Image src={cover} />
-        </Grid.Col>
-        <Grid.Col xs={8}>
-          <Stack>
-            <Stack spacing={0}>
-              <Text
-                size="lg"
-                weight={700}
-              >
-                <Link
-                  href={linkToArticle}
-                  passHref
+    <Link href={linkToArticle}>
+      <Paper
+        p="lg"
+        radius="xs"
+        ref={ref}
+        component="a"
+        withBorder
+        shadow={hovered ? hoverShadow : normalShadow}
+        sx={{
+          cursor: "pointer"
+        }}
+      >
+        <Grid>
+          <Grid.Col xs={4}>
+            <Image src={cover} />
+          </Grid.Col>
+          <Grid.Col xs={8}>
+            <Stack>
+              <Stack spacing={0}>
+                <Text
+                  size="lg"
+                  weight={700}
                 >
-                  <Anchor component="a">
-                    {title}
-                  </Anchor>
-                </Link>
-              </Text>
-              <Text
-                transform="uppercase"
-                size="xs"
-              >
-                {author} ~ {publishedOn}
+                  <Link
+                    href={linkToArticle}
+                    passHref
+                  >
+                    <Anchor component="a">
+                      {title}
+                    </Anchor>
+                  </Link>
+                </Text>
+                <Text
+                  transform="uppercase"
+                  size="xs"
+                >
+                  {author} ~ {publishedOn}
 
+                </Text>
+              </Stack>
+              <Text>
+                {description}
               </Text>
             </Stack>
-            <Text>
-              {description}
-            </Text>
-          </Stack>
-        </Grid.Col>
-      </Grid>
-    </Card>
+          </Grid.Col>
+        </Grid>
+      </Paper>
+    </Link>
   );
 }
 
