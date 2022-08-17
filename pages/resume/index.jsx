@@ -206,14 +206,11 @@ export default function Resume() {
             <Text
               weight={700}
             >
-              M.Tech, Computer Science Engineering, JNTU, Kakinada
+              M.Tech, Computer Science Engineering, JNTU, Kakinada [2014 - 2016]
             </Text>
             <List>
               <List.Item>
                 College: BVC Institute of Technology and Science, Amalapuram
-              </List.Item>
-              <List.Item>
-                Duration: 2014-2016
               </List.Item>
               <List.Item>
                 First Class
@@ -225,14 +222,11 @@ export default function Resume() {
             <Text
               weight={700}
             >
-              B.Tech, Information Technology, JNTU, Kakinada
+              B.Tech, Information Technology, JNTU, Kakinada [2008 - 2012]
             </Text>
             <List>
               <List.Item>
                 College: Rajamahendri Institute of Engineering and Technology, Rajahmundry
-              </List.Item>
-              <List.Item>
-                Duration: 2008 - 2012
               </List.Item>
               <List.Item>
                 First Class
