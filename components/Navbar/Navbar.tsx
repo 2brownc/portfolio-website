@@ -70,7 +70,7 @@ interface HeaderSearchProps {
 
 export default function HeaderSearch({ links }: HeaderSearchProps) {
   // const [opened, { toggle }] = useDisclosure(false);
-  const { classes, cx } = useStyles();
+  const { classes, cx, logo } = useStyles();
   const router = useRouter();
 
   const items = links.map((link) => (
@@ -96,7 +96,15 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
       <div className={classes.inner}>
         <Group>
           {/* <Burger opened={opened} onClick={toggle} size="sm" /> */}
-          <Logo />
+          <Link href="/">
+            <div
+              style={{
+                cursor: "pointer",
+              }}
+            >
+              <Logo />
+            </div>
+          </Link>
         </Group>
 
         <Group>
