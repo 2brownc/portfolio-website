@@ -13,10 +13,20 @@ module.exports = {
     },
   ],
   parserOptions: {
-    project: './tsconfig.json',
+    project: './tsconfig.eslint.json',
+    sourceType: 'module',
+    /* project: './tsconfig.json', */
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'no-console': 2
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          "contentlayer/generated",
+          "next-contentlayer/hooks"
+        ]
+      }
+    ]
   },
 };
