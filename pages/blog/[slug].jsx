@@ -20,6 +20,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const blog = allBlogs.find((blog) => blog.slug === params.slug);
-  return { props: { blog } };
+  const currentBlog = allBlogs.find((blog) => blog.slug === params.slug);
+  return { props: { blog: currentBlog } };
 }

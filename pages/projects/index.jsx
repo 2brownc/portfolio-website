@@ -7,13 +7,13 @@ import {
   Group,
   Container,
   Stack,
-  Title
+  Title,
 } from '@mantine/core';
-import { allProjects } from 'contentlayer/generated'
+import { allProjects } from 'contentlayer/generated';
 
 import {
   IconBrandGit,
-  IconExternalLink
+  IconExternalLink,
 } from '@tabler/icons';
 
 import { useMDXComponent } from 'next-contentlayer/hooks';
@@ -23,7 +23,7 @@ function ProjectCard({
   appLink,
   repoLink,
   techStack,
-  body
+  body,
 }) {
   const MDXContent = useMDXComponent(body.code);
   return (
@@ -35,7 +35,7 @@ function ProjectCard({
     >
       <Stack
         spacing={0}
-        sx={{ height: "100%" }}
+        sx={{ height: '100%' }}
       >
         <Text
           size="lg"
@@ -66,14 +66,13 @@ function ProjectCard({
             variant="light"
             color="blue"
             fullWidth
-            mt="md"
             radius="md"
             component="a"
             href={repoLink}
             target="_blank"
             rel="noopener noreferrer"
             leftIcon={<IconBrandGit />}
-            mt={0}
+            mt="xs"
           >
             View Source
           </Button>
@@ -81,14 +80,13 @@ function ProjectCard({
             variant="light"
             color="blue"
             fullWidth
-            mt="md"
             radius="md"
             component="a"
             href={appLink}
             target="_blank"
             rel="noopener noreferrer"
             leftIcon={<IconExternalLink />}
-            mt={0}
+            mt="xs"
           >
             Open App
           </Button>
@@ -102,7 +100,7 @@ export default function Projects({ projects }) {
   const breakpoints = [
     { maxWidth: 600, cols: 1, spacing: 'sm' },
     { minWidth: 601, cols: 2, spacing: 'md' },
-  ]
+  ];
   return (
     <Container py={20}>
       <Title
@@ -120,13 +118,13 @@ export default function Projects({ projects }) {
         }
       </SimpleGrid>
     </Container>
-  )
+  );
 }
 
 export async function getStaticProps() {
   return {
     props: {
-      projects: allProjects
-    }
-  }
+      projects: allProjects,
+    },
+  };
 }

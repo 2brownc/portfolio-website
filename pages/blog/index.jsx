@@ -5,8 +5,6 @@ import { useHover } from '@mantine/hooks';
 import {
   Card,
   Text,
-  Button,
-  Group,
   Grid,
   Image,
   Container,
@@ -15,8 +13,7 @@ import {
   Anchor,
 } from '@mantine/core';
 
-import { allBlogs } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer/hooks';
+import { allBlogs } from 'contentlayer/generated';
 
 function BlogCard({
   title,
@@ -24,17 +21,13 @@ function BlogCard({
   publishedOn,
   cover,
   description,
-  body,
-  slug
+  slug,
 }) {
-  const MDXContent = useMDXComponent(body.code);
   const linkToArticle = `blog/${slug}/`;
 
   const { hovered, ref } = useHover();
   const normalShadow = '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 36px 28px -7px, rgba(0, 0, 0, 0.04) 0px 17px 17px -7px';
   const hoverShadow = '0 1px 3px rgba(178, 236, 255, 0.15), rgba(178, 236, 255, 0.15) 0px 36px 28px -7px, rgba(178, 236, 255, 0.14) 0px 17px 17px -7px';
-
-
 
   return (
     <Card
@@ -78,7 +71,7 @@ function BlogCard({
           </Stack>
         </Grid.Col>
       </Grid>
-    </Card >
+    </Card>
   );
 }
 
@@ -103,5 +96,5 @@ export default function Projects() {
         }
       </Stack>
     </Container>
-  )
+  );
 }

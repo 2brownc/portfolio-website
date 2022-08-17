@@ -7,7 +7,7 @@ import {
   Button,
   Divider,
   Badge,
-  List
+  List,
 } from '@mantine/core';
 
 function AppLink({ source, app }) {
@@ -112,10 +112,10 @@ export default function Resume() {
               Weather App
             </Title>
             <Group>
-              <Badges badges={["NodeJS", "ReactJS", "Material UI", "React Redux"]} />
+              <Badges badges={['NodeJS', 'ReactJS', 'Material UI', 'React Redux']} />
             </Group>
             <Text>
-              The app shows the current weather condition for the user's location.
+              The app shows the current weather condition for the user&apos;s location.
               It also gives weather forecast for the next 24 hours and the next 7 days.
               User can select a custom location and specify different units for weather information.
             </Text>
@@ -130,11 +130,12 @@ export default function Resume() {
               App Dashboard w/ Login
             </Title>
             <Group>
-              <Badges badges={["NodeJS", "ReactJS", "Material UI", "React Router"]} />
+              <Badges badges={['NodeJS', 'ReactJS', 'Material UI', 'React Router']} />
             </Group>
             <Text>
               An application dashboard that can only be accessed by authenticated users.
-              A sign up form with form validation is provided for users wishing to create an account.
+              A sign up form with form validation is provided
+              for users wishing to create an account.
             </Text>
             <AppLink
               source="https://github.com/2brownc/dashboard-with-login"
@@ -147,7 +148,7 @@ export default function Resume() {
               Calculator
             </Title>
             <Group>
-              <Badges badges={["NodeJS", "ReactJS", "Material UI"]} />
+              <Badges badges={['NodeJS', 'ReactJS', 'Material UI']} />
             </Group>
             <Text>
               A calculator built using ReactJS. Keyboard input, DEL and AC operations are supported.
@@ -163,7 +164,7 @@ export default function Resume() {
               Binary-Decimal Converter
             </Title>
             <Group>
-              <Badges badges={["NodeJS", "ReactJS", "React-Bootstrap"]} />
+              <Badges badges={['NodeJS', 'ReactJS', 'React-Bootstrap']} />
             </Group>
             <Text>
               An on the fly Binary-Decimal number converter.
@@ -179,10 +180,11 @@ export default function Resume() {
               Portfolio Website
             </Title>
             <Group>
-              <Badges badges={["NodeJS", "ReactJS", "NextJS", "Mantine UI"]} />
+              <Badges badges={['NodeJS', 'ReactJS', 'NextJS', 'Mantine UI']} />
             </Group>
             <Text>
-              A website with a project showcase, a blog and a resume page. It is the website you are looking at right now.
+              A website with a project showcase, a blog and a resume page.
+              It is the website you are looking at right now.
             </Text>
             <AppLink
               source="https://github.com/2brownc/portfolio-website"

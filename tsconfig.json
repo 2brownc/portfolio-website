@@ -24,8 +24,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".contentlayer/generated"
-    "**/*.jsx",
-    "**/*.jx"
    ],
   "exclude": ["node_modules"]
 }

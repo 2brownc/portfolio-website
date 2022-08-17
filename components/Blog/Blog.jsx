@@ -4,10 +4,10 @@ import {
   Image,
   Text,
   Anchor,
-  Title
+  Title,
 } from '@mantine/core';
 
-import ImageCredit from '../../styles/ImageCredit.module.css'
+import ImageCredit from '../../styles/ImageCredit.module.css';
 
 export default function BlogLayout({
   cover,

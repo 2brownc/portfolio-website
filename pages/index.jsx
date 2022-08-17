@@ -1,14 +1,11 @@
 import {
   Center,
-  Card,
   Title,
   Text,
   Stack,
   Container,
   Grid,
-  Group,
   Button,
-  Divider
 } from '@mantine/core';
 
 import Link from 'next/link';
@@ -18,8 +15,7 @@ import Styles from '../styles/Index.module.css';
 export default function IndexPage() {
   return (
     <Center className={Styles.main}>
-      <Container
-      >
+      <Container>
         <Grid>
           <Grid.Col md={6}>
             <Stack>
@@ -52,17 +48,17 @@ export default function IndexPage() {
           <Grid.Col md={6}>
             <Stack align="center">
               <Stack>
-                <Link href="/projects">
+                <Link href="/projects" passHref>
                   <Button>
                     Look at my Projects
                   </Button>
                 </Link>
-                <Link href="/resume">
+                <Link href="/resume" passHref>
                   <Button>
                     View Resume / Contact Info
                   </Button>
                 </Link>
-                <Link href="/blog">
+                <Link href="/blog" passHref>
                   <Button>
                     Read my Blog
                   </Button>
@@ -72,6 +68,6 @@ export default function IndexPage() {
           </Grid.Col>
         </Grid>
       </Container>
-    </Center >
+    </Center>
   );
 }
