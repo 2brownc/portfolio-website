@@ -70,7 +70,7 @@ interface HeaderSearchProps {
 
 export default function HeaderSearch({ links }: HeaderSearchProps) {
   // const [opened, { toggle }] = useDisclosure(false);
-  const { classes, cx, logo } = useStyles();
+  const { classes, cx } = useStyles();
   const router = useRouter();
 
   const items = links.map((link) => (
