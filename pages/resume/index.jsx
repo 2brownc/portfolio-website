@@ -150,9 +150,9 @@ export default function Resume() {
               <Badges badges={['NodeJS', 'ReactJS', 'Material UI', 'React Router']} />
             </Group>
             <Text>
-              An application dashboard that can only be accessed by authenticated users.
-              A sign up form with form validation is provided
-              for users wishing to create an account.
+              A frontend mock up of an application with dashboard that requires user authentication.
+              A sign up form with form validation is provided for users wishing to create an account.
+              After login a Dashboard is presented with a list of current projects of the fictional company ACME Inc.
             </Text>
             <AppLink
               source="https://github.com/2brownc/dashboard-with-login"
