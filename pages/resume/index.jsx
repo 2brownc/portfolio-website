@@ -223,7 +223,7 @@ export default function Resume() {
             <Text
               weight={700}
             >
-              M.Tech, Computer Science Engineering, JNTU, Kakinada [2014 - 2016]
+              M.Tech, Computer Science Engineering, JNTU, Kakinada [2015 - 2016]
             </Text>
             <List>
               <List.Item>
