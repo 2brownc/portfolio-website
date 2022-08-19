@@ -2,7 +2,9 @@
   height: 80vh;
 }
 
+
 .card {
+  opacity: 1;
   min-width: 50vw;
 }
 
@@ -10,3 +12,12 @@
   max-width: 60%;
 }
 
+.bgimg {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: -1;
+  background-image: url('/static/images/hero.jpg');
+  background-size: cover;
+}
