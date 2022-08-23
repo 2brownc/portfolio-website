@@ -1,0 +1,510 @@
+---
+title: 'How I Made This Website'
+author: 'Brown'
+publishedOn: 'Aug 16, 2021'
+description: 'I used Next.js for routing and rendering pages, Mantine for UI and Contentlayer for MDX handling.'
+cover: '/static/images/websiteMaking.jpg'
+coverCredit: 'Shane Aldendorff'
+coverCreditLink: 'https://unsplash.com/photos/3AzL-IR3v7Y'
+---
+
+There are so many ways to create a website these days with each CMS, framework and platform espousing their own philosophy and way of doing things. So choosing one that fits the desired website is crucial.
+
+I wanted to use ReactJS extensively when building this website. So I chose [Next.js](https://nextjs.org/) which is a framework that improves developer experience (DX) when working with ReactJS. It supports both Server-side Rendering (SSR) which is helpful for interactive content and Static Generation (SG) for static content like this blog page you are now reading.
+
+For User Interface I selected a React based component library, [Mantine](https://mantine.dev/), because it will gel well with the already react based website.
+
+For content heavy websites such as blogs, markdown is a very good choice. [MDX](https://mdxjs.com/) gives a ReactJS spin to Markdown making it easier to include data from react components using JSX syntax. Now to handle the MDX files and render them as webpages, [Contentlayer](https://www.contentlayer.dev/) is used.
+
+This is not a step my step tutorial but a bird's eye view on how this website is built. Javascript is a fast moving ecosystem and the frameworks and libraries mentioned here might drop and pick features or break API. It's better to be clear on "what to do" so "how to do" can be determined by reading the  documentation of the software. A comfortable level of ReactJS knowledge is assumed.
+
+## The Website
+
+We will build a "Portfolio Website" with a landing page, project showcase, a blog and a resume. The website will be deployed as a Static Site. We will assume our website url is `mywebsite.tld`. A top level domain (tld) can be `.com`, `.org`, `.dev` etc.
+
+## Start with the Mantine template for Next.js
+
+[Next.js template of Mantine](https://mantine.dev/guides/next/) is the starting point for  the project. You can start from scratch but the template gets some gnarly details right. You can either click on "[Use this template](https://github.com/mantinedev/mantine-next-template)" or clone that repository if you don't have a GitHub account.
+
+This is the directory structure of the template:
+
+```fish
+mantine-next-template on  master via  v18.7.0 
+❯ tree . -L 3 -I node_modules
+.
+├── components
+│   ├── ColorSchemeToggle
+│   │   └── ColorSchemeToggle.tsx
+│   └── Welcome
+│       ├── Welcome.story.tsx
+│       ├── Welcome.styles.ts
+│       ├── Welcome.test.tsx
+│       └── Welcome.tsx
+├── jest.config.js
+├── jest.setup.js
+├── next.config.js
+├── next-env.d.ts
+├── package.json
+├── pages
+│   ├── _app.tsx
+│   ├── _document.tsx
+│   └── index.tsx
+├── public
+│   └── favicon.svg
+├── README.md
+├── tsconfig.json
+└── yarn.lock
+
+5 directories, 17 files
+
+```
+
+- The web pages to be served are located at `/pages/*`.
+- The React Components that can be imported and used in web pages are located at `/components/*`
+- Next.js has built it support of [CSS Modules](https://css-tricks.com/css-modules-part-1-need/). We can create them at `/styles/*`
+- We will create the data for our blog in `/data/blog/*` and for projects page at `/data/projects/*`.
+
+## Next.js Primer
+
+Next.js is the foundation upon which the website is built. It will take care of routing web pages, rendering web pages and finally building the static website.
+
+### Start the Server!
+
+Once you are in the template directory run `yarn` to install the required packages. Now you are ready to start the server by using `yarn dev` and see the default page. Note the url printed on the terminal and open it in a web browser. The url is usually [http://localhost:3000](http://localhost:3000).
+
+![Mantine Default Page](/static/images/blog/1-website_making/MantineDefaultPage.png  "Mantine Default Page")
+
+### Static Routing
+
+Next.js supports routing right out of the box: the page structure of your website will be similar to the directory structure of `/pages/`. Content of `/pages/index.tsx` will be the index page of the website.
+
+If there is a file `/pages/about.tsx` it will end up being `mywebsite.tld/about`. But the web page `mywebsite.tld/about` can also be generated from `/pages/about/index.tsx`.
+
+The files can have `.tsx`, `.ts`, `.jsx` or `.js` as extension. We will use this static routing for Home, Projects, Resume and Blog Listing pages.
+
+|Page|Directory Path|Website Path|
+|:-|:-|:-|
+|Index page|`/pages/index.tsx`|`mywebsite.tld/`|
+|Projects page|`/pages/projects/index.tsx`|`mywebsite.tld/projects`|
+|Resume page|`/pages/resume/index.tsx`|`mywebsite.tld/resume`|
+|Blog page|`/pages/blog/index.tsx`|`mywebsite.tld/blog`|
+
+### Dynamic Routing
+
+The `mywebsite.tld/blog` page will list all the articles but how will the articles themselves be served? We can create a file for every blog article in the directory `/pages/blog/index.tsx` but that wouldn't be so [DRY](https://wikiless.org/wiki/Don%27t_repeat_yourself). We will find ourselves repeating the same layout used by every blog article in every blog article file.
+
+For a blog article the data (text and image content of the article) is different but the layout (text styling, page layout etc) stays the same so it would best if we can define the layout once and save data for each article separately. Then we can "pass" the data of the blog article to a single special page. That page will use that to data render the web page using the specified layout. And this is where dynamic routing comes in.
+
+The special page will be `/pages/blog/[slug].tsx`. The braces indicate it's special as in the matching path segment will be made available, by the router object, to logic inside the file.
+
+It's better when you see it:
+
+```jsx
+// /pages/blog/[slug].tsx
+
+import { useRouter } from 'next/router'
+
+export default function Blog() {
+  const router = useRouter();
+  /*
+    the same name used inside the braces
+    in this case "slug"
+  */
+  const {slug} = router.query;
+  return (
+    <h1>
+      You are on the
+      <span style={{color: "red"}}>{slug}</span>
+      page
+    </h1>
+  );
+}
+```
+
+![Dynamic Routing: When the slug is "start"](/static/images/blog/1-website_making/dynrt1.png  "Dynamic Routing: When the slug is 'start'")
+
+![Dynamic Routing: When the slug is "article"](/static/images/blog/1-website_making/dynrt2.png  "Dynamic Routing: When the slug is 'article'")
+
+Here, we are rendering the page based on the url after it is requested. But this will take up precious processing time and introduces lag when browsing the website. These issues can be dealt with using Static Generation.
+
+### Static Generation
+
+To pre-render all the blog pages first we need to determine all the possible articles or paths. Let's assume the following array contains all the articles in a blog.
+
+```js
+const blogPages = ['article1', 'aritcle2', 'article3'];
+```
+
+Now, with `getStaticPaths()` we can indicate all the possible paths. The paths will be passed as an array of objects. There is an optional property called `fallback` which will be rendered if the web page associated with the original path fails to load.
+
+```jsx
+// /pages/blog/[slug].tsx
+
+import { useRouter } from 'next/router'
+
+export default function Blog() {
+  const router = useRouter();
+  /*
+    the same name used inside the braces
+    in this case "slug"
+  */
+  const {slug} = router.query;
+  return (
+    <h1>
+      You are on the
+      <span style={{color: "red"}}>{slug}</span>
+      page
+    </h1>
+  );
+}
+
+export async function getStaticPaths() {
+  const blogPages = ['article1', 'aritcle2', 'article3'];
+  return {
+    paths: blogPages.map((blog) => ({ params: { slug: blog.slug } })),
+    fallback: false,
+  };
+}
+```
+
+Now that we know the path of articles we can then generate the articles themselves using `getStaticProps()`. We don't need to use the `router` object anymore because `getStaticProps()` will pass the relevant data to the page component.
+
+```jsx
+// /pages/blog/[slug].tsx
+
+export default function Blog({blog}) {
+  return (
+    <h1>
+      You are on the
+      <span style={{color: "red"}}>{blog}</span>
+      page
+    </h1>
+  );
+}
+
+export async function getStaticPaths() {
+  const allBlogs = ['article1', 'aritcle2', 'article3'];
+  return {
+    paths: allBlogs.map((blog) => ({ params: { slug: blog} })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const blogData = {
+    article1: "Introduction",
+    article2: "Deployment",
+    article3: "Debug"
+  }
+  const currentBlog = allBlogs.find((blog) => blog.slug === params.slug);
+  return { props: { blog: currentBlog } };
+}
+
+```
+
+Now when you visit `mywebsite.tld/blog/aritcle1` url, "You are on the Introduction page" is displayed.
+
+![Statically Generated Pages: When the slug is "article"](/static/images/blog/1-website_making/sg1.png  "Article 1: Notice the slug in the url")
+
+![Statically Generated Pages: When the slug is "article"](/static/images/blog/1-website_making/sg2.png  "Article 3: Notice the slug in the url")
+
+As you have noticed, the "blog data" is in a variable named `blogData`. In practice, blog data is retrieved from a "source". The source could be provided by a plug that consumes files on server or connects to an api or database. In our case that plugin is 'Contentlayer'
+
+## Setting up Contentlayer
+
+Contentlayer is a content preprocessor that transforms local files (more sources planned for future) into JSON which can be easily import into an application. In our case the local files will be MDX files located at `/data/*`. Contentlayer comes with MDX support.
+
+### Install Contentlayer
+
+Install the Contentlayer as such:
+
+```fish
+yarn add contentlayer next-contentlayer
+```
+
+### Integrate Contentlayer with Next.js
+
+For live-reload, as in see the change as we edit the project files, we need to wrap Next.js configuration with `withContentlayer`:
+
+```js
+const { withContentlayer } = require('next-contentlayer')
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withContentlayer(withBundleAnalyzer({
+  reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+}));
+
+```
+
+### Process MDX Files and Generate Web Pages
+
+Next step would be configuring Contentlayer but first we need to agree upon the format of MDX files. The blog files will be located at `/data/blog/*.mdx`.
+
+The format for the MDX blog page would be:
+
+```mdx
+---
+title: 'This is the title of the blog article.'
+author: 'Author name'
+publishedOn: 'When was the article published?'
+description: 'A short text. Can be used as subtitle.'
+cover: 'Hero Image! See https://blog.hubspot.com/marketing/hero-image' 
+coverCredit: 'Give credit to the artist'
+coverCreditLink: 'Link to the artist page or photo'
+---
+
+This is the main body of the blog article.
+
+```
+
+What's happening here:
+
+- The data inside the two `---` is called "frontmatter".
+- Frontmatter is not parse into HTML.
+- It will be made available as JSON data by the content processor (in our case Contentlayer).
+- After the frontmatter is the markdown that will be converted to HTML which will be used to render the associated web page.
+
+Now we know the format of the MDX blog page we will configure Contentlayer accordingly:
+
+```ts
+// contentlayer.config.ts
+
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+
+export const Blog = defineDocumentType(() => ({
+  name: 'Blog',
+  filePathPattern: 'blog/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    author: { type: 'string', required: true },
+    publishedOn: { type: 'string', required: true },
+    description: { type: 'string', required: true },
+    cover: { type: 'string', required: true },
+    coverCredit: { type: 'string', required: true },
+    coverCreditLink: { type: 'string', required: true },
+  },
+  computedFields: {
+    slug: {
+      type: 'string',
+      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx/, ''),
+    },
+  },
+}))
+
+export default makeSource({
+  contentDirPath: 'data',
+  documentTypes: [Blog],
+  mdx: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+})
+```
+
+What's happening here:
+
+- We define a Blog document with different properties which will be used by Contentlayer to render MDX into HTML.
+- `filePathPattern` tells where to look for the files
+- `contentType` tells which kind of files to expect
+- `fields` what are the fields that need to be parsed from the files
+- `computedFields` can be used to compute new data from the file such as slugs (path segments) or even use other plugins to determine "time to read" etc
+- Finally all the Documents defined with `defineDocumentType` are used by `makeSource` to make a "source".
+- The source i.e the documents defined earlier will now be made available and can be imported by specifying the document name.
+- For example document exported as `Blog` will be available as `allBlogs`: `import { allBlogs } from 'contentlayer/generated';`
+
+Now that we have configured Contentlayer, we will make use of it in blog page. Let's go back to `/pages/blog/[slug].tsx`. We can now "import article data" using Contentlayer into our blog page component. A JSON object will be created for each `.mdx` file. The html is passed as a string which can be converted to JSX using `useMDXComponent()` provided by Contentlayer.
+
+```tsx
+// /pages/blog/[slug].tsx
+
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { allBlogs } from 'contentlayer/generated';
+import BlogLayout from '../../components/Blog/Blog';
+
+export default function Blog({ blog }) {
+  const MDXContent = useMDXComponent(blog.body.code);
+
+  return (
+    <BlogLayout {...blog}>
+      <MDXContent />
+    </BlogLayout>
+  );
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: allBlogs.map((blog) => ({ params: { slug: blog.slug } })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const currentBlog = allBlogs.find((blog) => blog.slug === params.slug);
+  return { props: { blog: currentBlog } };
+}
+```
+
+What's happening here:
+
+- Contentlayer will parse all requested MDX files and creates an array of JSON objects which is imported here as `allBlogs`.
+- `getStaticPaths()` will create paths based on the `slug` property of the JSON object from `allBlogs`.
+- The paths created previously will be passed to `getStaticProps()` which will proceed to prerender the respective pages. It does so by passing "data" associated with the "path" to the blog page component which is `/pages/blog/[slug].tsx` in our case.
+
+
+Now, we need a page that lists all the blog articles in a single page, kind of like an index for the blog. We will create it at `/pages/blog/index.tsx`.
+
+
+This is an example of a very simple page listing all the articles in a blog.
+
+```tsx
+// /data/projects/[project].tsx
+
+import Link from "next/link";
+
+import { allBlogs } from "contentlayer/generated";
+
+function BlogCard({ title, author, publishedOn, cover, description, slug }) {
+  const linkToArticle = `blog/${slug}/`;
+
+  return (
+    <div>
+      <div>
+        <Link href={linkToArticle} passHref>
+          <a>{title}</a>
+        </Link>
+      </div>
+      <div>
+        {author} ~ {publishedOn}
+      </div>
+      <div>{description}</div>
+    </div>
+  );
+}
+
+export default function Projects({ allBlogs }) {
+  return (
+    <>
+      <div>
+        <h1>The Blog</h1>
+      </div>
+      <div>
+        {allBlogs.map((blog) => (
+          <BlogCard key={blog._id} {...blog} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+export async function getStaticProps() {
+  return { props: { allBlogs } };
+}
+```
+
+What's happening here:
+
+- All the MDX files from `/data/blog/*.mdx` will be processed and imported as `allBlogs`  from Contentlayer.
+- `getStaticProps()` will pass `allBlogs` to the `Projects` component forcing the page `mywebsite.tld/blog` to prerender at build time.
+
+
+Similarly a project listing page, `/pages/projects/index.tsx`, with separate pages for each project, `/pages/projects/[project].tsx`, can be created. The associated data for each project is stored at `/data/projects/*.mdx` as MDX files.
+
+The project listing page `/data/projects/projects.tsx` will be available on the website as `mywebsite.tld/projects`.
+
+## User Interface with Mantine
+
+You might have noticed `/pages/_app.tsx` in the project directory. It is used to override the global App component to maintain a particular layout or persist state.
+
+So `_app.tsx` can be used to:
+
+- Set the page layout for the website. Eg: Headers, footers, navbar.
+- Set a UI's context providers for theme properties, colorschemes and notifications. In this case for Mantine UI.
+
+Let's concentrate on what `/pages/_app.tsx` returns:
+
+```tsx
+// imports
+
+export default function App(props: AppProps & { colorScheme: ColorScheme }) {
+  const { Component, pageProps } = props;
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(nextColorScheme);
+    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+  };
+
+  return (
+    <>
+      <Head>
+        <title>Mantine next example</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link rel="shortcut icon" href="/favicon.svg" />
+      </Head>
+
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+          <NotificationsProvider>
+            <Component {...pageProps} />
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </>
+  );
+}
+
+App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+});
+```
+
+What's happening here:
+
+- Contents of the `<Head>` component make it to the actual head of the HTML document that is finaly served to the user.
+- So you can set any metadata or style information in the `<Head>` component.
+- `<ColorSchemeProvider>` has color scheme information. For example dark/light mode.
+- Since it is a context provider, this color scheme information is available to all the Mantine components. Thankfully all those components support "dark/light" mode.
+- To survive between sessions a cookie, `getInitialProps`, is set using the `cookie-next` package. Then if a cookie is present the value is loaded and passed by `getInitialProps` to the App component so `<ColorSchemeProvider>` can set the scheme appropriately.
+- `<MantineProvider>` and `<NotificationsProvider>` context providers handle styles and notifications respectively.
+
+If you plan on using [Mantine UI components](https://ui.mantine.dev/) or build some yourself you will put those in `/components/componentDir/component.tsx`.
+
+## Build and Deploy
+
+### Static Only
+
+You can build the website using `yarn export` and serve the resulting files in `/out` using a web server of your choice or an online host. But this method comes with [limitations](https://nextjs.org/docs/advanced-features/static-html-export) and so this option should be carefully considered.
+
+Examples:
+
+- [Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/)
+- [GitHub Pages](https://github.com/vercel/next.js/tree/canary/examples/github-pages)
+- [Firebase](https://github.com/vercel/next.js/tree/canary/examples/with-firebase-hosting)
+- [Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/deploy-nextjs)
+
+### Managed Server
+
+Much better way would be to deploy the website on host providers that specifically support Next.js.
+
+Examples:
+
+- [Vercel](https://vercel.com/new/clone)
+- [AWS Copilot](https://aws.github.io/copilot-cli/)
+- [Digital Ocean App Platform](Digital Ocean App Platform)
+- [Google Cloud Run](https://github.com/vercel/next.js/tree/canary/examples/with-docker)
+- [Heroku](https://elements.heroku.com/buildpacks/mars/heroku-nextjs)
+- [Railway](https://railway.app/new/starters/nextjs-prisma)
+- [Render](https://render.com/docs/deploy-nextjs-app)
+
+
+## Conclusion
+
+Next.js provides so many sane and require out of the box features it makes an excellent choice for developing React app or websites. But Next.js even with all it's "opinions" leaves the task of managing content to the user and this is where Contentlayer comes it. Both of them compliment each other and give an excellent DX for the developer and excellent UX of the user.
