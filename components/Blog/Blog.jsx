@@ -8,6 +8,7 @@ import {
 } from '@mantine/core';
 
 import ImageCredit from '../../styles/ImageCredit.module.css';
+import BlogStyles from '../../styles/Blog.module.css';
 
 export default function BlogLayout({
   cover,
@@ -61,9 +62,9 @@ export default function BlogLayout({
         <Container mt={10} fluid>
           <Stack>
             <Text align="center" italic>{description}</Text>
-            <Text>
+            <div className={BlogStyles.blogMain}>
               {children}
-            </Text>
+            </div>
           </Stack>
         </Container>
       </Stack>
