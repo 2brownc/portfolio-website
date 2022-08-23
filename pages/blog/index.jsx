@@ -81,7 +81,7 @@ function BlogCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({ allBlogs }) {
   return (
     <Container pt={20}>
       <Title
@@ -103,4 +103,8 @@ export default function Projects() {
       </Stack>
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  return { props: { allBlogs } };
 }
