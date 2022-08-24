@@ -1,5 +1,10 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import readingTime from 'reading-time'
+import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from 'rehype-prism-plus'
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
@@ -31,7 +36,7 @@ export const Project = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     appLink: { type: 'string', required: true },
     repoLink: { type: 'string', required: true },
-    techStack: {type: 'string', required: true},
+    techStack: { type: 'string', required: true },
   },
   computedFields: {
     slug: {
@@ -45,8 +50,13 @@ export default makeSource({
   contentDirPath: 'data',
   documentTypes: [Blog, Project],
   mdx: {
-    remarkPlugins: [],
-    rehypePlugins: [],
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      rehypePrism,
+      rehypeAccessibleEmojis
+    ]
   },
 })
 
