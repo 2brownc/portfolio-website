@@ -19,7 +19,7 @@ import AppStyles from '../styles/App.module.css';
 
 import '/styles/prismjs.css';
 import '/styles/JetBrainsMonoNF.css';
-import '/styles/markdown.css';
+// import '/styles/markdown.css';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
