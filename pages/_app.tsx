@@ -31,12 +31,14 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
 
+  /*
   const mantineTheme: MantineThemeOverride = {
     colorScheme: colorScheme,
-    /*fontFamily: 'Merriweather Sans, sans serif',
+    fontFamily: 'Merriweather Sans, sans serif',
     fontFamilyMonospace: 'JetBrainsMono NF, monospace',
-    headings: { fontFamily: 'Merriweather, serif' },*/
+    headings: { fontFamily: 'Merriweather, serif' },
   };
+  */
 
   const headerLinks = [
     {
@@ -82,15 +84,17 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <title>Brown's Website</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.png" />
+        {/*
         <link
           href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap"
           rel="stylesheet"
         />
+        */}
       </Head>
 
       <GoogleAnalytics />
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={mantineTheme} withGlobalStyles withNormalizeCSS>
+        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <div className={AppStyles.page}>
               <div className={AppStyles.app}>
