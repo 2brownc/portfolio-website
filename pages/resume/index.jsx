@@ -200,7 +200,7 @@ export default function Resume() {
               <Badges badges={['NodeJS', 'ReactJS', 'NextJS', 'Mantine UI']} />
             </Group>
             <Text>
-              A website with a project showcase, a blog and a resume page.
+              A website with a landing page, a project showcase, a blog and a resume page.
               It is the website you are looking at right now.
             </Text>
             <AppLink
