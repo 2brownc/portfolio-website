@@ -18,7 +18,7 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 import AppStyles from '../styles/App.module.css';
 
 import '/styles/prismjs.css';
-import '/styles/JetBrainsMonoNF.css';
+// import '/styles/JetBrainsMonoNF.css';
 // import '/styles/markdown.css';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
@@ -33,9 +33,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   const mantineTheme: MantineThemeOverride = {
     colorScheme: colorScheme,
-    fontFamily: 'Merriweather Sans, sans serif',
+    /*fontFamily: 'Merriweather Sans, sans serif',
     fontFamilyMonospace: 'JetBrainsMono NF, monospace',
-    headings: { fontFamily: 'Merriweather, serif' },
+    headings: { fontFamily: 'Merriweather, serif' },*/
   };
 
   const headerLinks = [
