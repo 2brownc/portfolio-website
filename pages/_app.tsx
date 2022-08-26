@@ -27,36 +27,12 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       label: 'Home',
       link: '/',
     },
-    {
-      label: 'Projects',
-      link: '/projects',
-    },
-    {
-      label: 'Blog',
-      link: '/blog',
-    },
-    {
-      label: 'Resume',
-      link: '/resume',
-    },
   ];
 
   const footerLinks = [
     {
       link: '/',
       label: 'Home',
-    },
-    {
-      link: '/projects',
-      label: 'Projects',
-    },
-    {
-      link: '/blog',
-      label: 'Blog',
-    },
-    {
-      link: '/resume',
-      label: 'Resume',
     },
   ];
 
