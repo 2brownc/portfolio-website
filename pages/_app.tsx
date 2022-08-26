@@ -35,7 +35,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     colorScheme: colorScheme,
     fontFamily: 'Merriweather Sans, sans serif',
     fontFamilyMonospace: 'JetBrainsMono NF',
-    headings: { fontFamily: 'Merriweather, serif' },
+    headings: { fontFamily: 'Merriweather, serif' }
   };
 
   const headerLinks = [
