@@ -9,4 +9,9 @@ module.exports = withContentlayer(withBundleAnalyzer({
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
+  },
 }));
