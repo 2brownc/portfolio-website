@@ -12,6 +12,8 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 
 import AppStyles from '../styles/App.module.css';
 
+import '/styles/prismjs.css';
+
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);

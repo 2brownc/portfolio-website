@@ -1,16 +1,20 @@
+import React from 'react';
+
 import Image from 'next/image';
 
 import {
   Stack,
   Container,
   Text,
-  Anchor,
   Title,
-  createStyles
+  createStyles,
+  useMantineTheme
 } from '@mantine/core';
 
-import ImageCredit from '../../styles/ImageCredit.module.css';
-import BlogStyles from '../../styles/Blog.module.css';
+import cx from 'classnames';
+
+import ImageCredit from '/styles/ImageCredit.module.css';
+import BlogStyles from '/styles/Blog.module.css';
 
 export default function BlogLayout({
   cover,
@@ -22,6 +26,10 @@ export default function BlogLayout({
   description,
   children,
 }) {
+
+  // to determine the current color scheme
+  const mantineTheme = useMantineTheme();
+
   const heroImageStyles = createStyles((theme) => ({
     a: {
       '&:visited': {
@@ -85,12 +93,18 @@ export default function BlogLayout({
         <Container mt={10} fluid>
           <Stack>
             <Text align="center" italic>{description}</Text>
-            <div className={BlogStyles.blogMain}>
+            <div
+              className={cx(
+                BlogStyles.blogMain,
+                { "prismjsLight": mantineTheme.colorScheme === 'light' },
+                { "prismjsDark": mantineTheme.colorScheme === 'dark' },
+              )}
+            >
               {children}
             </div>
           </Stack>
         </Container>
-      </Stack>
-    </Container>
+      </Stack >
+    </Container >
   );
 }
