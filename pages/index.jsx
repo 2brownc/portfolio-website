@@ -43,7 +43,7 @@ export default function IndexPage() {
             withBorder
           >
             <Grid>
-              <Grid.Col md={6}>
+              <Grid.Col>
                 <Stack>
                   <Stack
                     spacing="xs"
@@ -59,36 +59,21 @@ export default function IndexPage() {
                       size="lg"
                       align="center"
                     >
-                      Hi! I am a software developer.
+                      Hi! I have moved by website to over here:
                     </Text>
 
                     <Text
                       size="md"
                       align="center"
                     >
-                      Look around my website and get to know me more.
+                      <Button
+                        variant="light"
+                        component="a"
+                        href="https://heybrown.vercel.app/"
+                      >
+                        https://heybrown.vercel.app/
+                      </Button>
                     </Text>
-                  </Stack>
-                </Stack>
-              </Grid.Col>
-              <Grid.Col md={6}>
-                <Stack align="center">
-                  <Stack>
-                    <Link href="/projects" passHref>
-                      <Button>
-                        Look At My Projects
-                      </Button>
-                    </Link>
-                    <Link href="/resume" passHref>
-                      <Button>
-                        View Resume / Contact Info
-                      </Button>
-                    </Link>
-                    <Link href="/blog" passHref>
-                      <Button>
-                        Read My Blog
-                      </Button>
-                    </Link>
                   </Stack>
                 </Stack>
               </Grid.Col>
