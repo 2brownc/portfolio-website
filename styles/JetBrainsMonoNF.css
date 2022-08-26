@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'JetBrainsMono NF';
+    src: local('JetBrains Mono Bold Nerd Font Complete Mono Windows Compatible'), local('JetBrainsMonoNerdFontCompl-Bold'),
+        url('fonts/jetbrainsmono_nf/JetBrainsMonoNerdFontCompl-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrainsMono NF';
+    src: local('JetBrains Mono Regular Nerd Font Complete Mono Windows Compatible'), local('JetBrainsMonoNerdFontCo-Regular'),
+        url('fonts/jetbrainsmono_nf/JetBrainsMonoNerdFontCo-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrainsMono NF';
+    src: local('JetBrains Mono Bold Italic Nerd Font Complete Mono Windows Compatible'), local('JetBrainsMonoNerdFo-BoldItalic'),
+        url('fonts/jetbrainsmono_nf/JetBrainsMonoNerdFo-BoldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrainsMono NF';
+    src: local('JetBrains Mono Italic Nerd Font Complete Mono Windows Compatible'), local('JetBrainsMonoNerdFontCom-Italic'),
+        url('fonts/jetbrainsmono_nf/JetBrainsMonoNerdFontCom-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+

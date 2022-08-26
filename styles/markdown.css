@@ -1,0 +1,14 @@
+.markdownCustom h1,
+.markdownCustom h2,
+.markdownCustom h3,
+.markdownCustom h4,
+.markdownCustom h5,
+.markdownCustom h6 {
+  font-family: "Merriweather", serif !important;
+}
+
+.markdownCustom pre,
+.markdownCustom code,
+.markdownCustom pre code {
+  font-family: "JetBrainsMono NF", monospace !important;
+}

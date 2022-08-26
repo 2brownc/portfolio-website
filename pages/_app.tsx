@@ -3,7 +3,12 @@ import { useState } from 'react';
 import { AppProps } from 'next/app';
 import { getCookie, setCookie } from 'cookies-next';
 import Head from 'next/head';
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import {
+  MantineProvider,
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineThemeOverride,
+} from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 
 import Navbar from '../components/Navbar/Navbar';
@@ -13,6 +18,8 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 import AppStyles from '../styles/App.module.css';
 
 import '/styles/prismjs.css';
+import '/styles/JetBrainsMonoNF.css';
+import '/styles/markdown.css';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -22,6 +29,18 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
     setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+  };
+
+  const mantineTheme: MantineThemeOverride = {
+    colorScheme: colorScheme,
+    fontFamily: 'Merriweather Sans, sans serif',
+    fontFamilyMonospace: 'JetBrainsMono NF',
+    headings: { fontFamily: 'Merriweather, serif' },
+    pre: {
+      code: {
+        fontFamily: 'JetBrainsMono NF'
+      }
+    },
   };
 
   const headerLinks = [
@@ -68,11 +87,15 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <title>Brown's Website</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.png" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
       <GoogleAnalytics />
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+        <MantineProvider theme={mantineTheme} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <div className={AppStyles.page}>
               <div className={AppStyles.app}>

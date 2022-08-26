@@ -73,7 +73,11 @@ export default function BlogLayout({
 
         <Container mt={10} fluid>
           <Stack spacing={0}>
-            <Title>{title}</Title>
+            <Title
+              align="center"
+            >
+              {title}
+            </Title>
             <Text
               variant="uppercase"
               size="sm"
@@ -98,6 +102,7 @@ export default function BlogLayout({
                 BlogStyles.blogMain,
                 { "prismjsLight": mantineTheme.colorScheme === 'light' },
                 { "prismjsDark": mantineTheme.colorScheme === 'dark' },
+                "markdownCustom"
               )}
             >
               {children}
