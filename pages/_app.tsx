@@ -34,8 +34,8 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const mantineTheme: MantineThemeOverride = {
     colorScheme: colorScheme,
     fontFamily: 'Merriweather Sans, sans serif',
-    fontFamilyMonospace: 'JetBrainsMono NF',
-    headings: { fontFamily: 'Merriweather, serif' }
+    fontFamilyMonospace: 'JetBrainsMono NF, monospace',
+    headings: { fontFamily: 'Merriweather, serif' },
   };
 
   const headerLinks = [
