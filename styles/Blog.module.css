@@ -4,3 +4,9 @@
   border: 1px solid black;  
   display: block;
 }
+
+.heroImageContainer {
+  display: block;
+  width: 1600px;
+  height: 900px;
+}

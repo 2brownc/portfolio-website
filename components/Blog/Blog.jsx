@@ -1,10 +1,12 @@
+import Image from 'next/image';
+
 import {
   Stack,
   Container,
-  Image,
   Text,
   Anchor,
   Title,
+  createStyles
 } from '@mantine/core';
 
 import ImageCredit from '../../styles/ImageCredit.module.css';
@@ -20,25 +22,46 @@ export default function BlogLayout({
   description,
   children,
 }) {
+  const heroImageStyles = createStyles((theme) => ({
+    a: {
+      '&:visited': {
+        color: theme.colorScheme === 'light' ? theme.colors.violet[2] : theme.colors.violet[3],
+      },
+      '&:link': {
+        color: theme.colorScheme === 'light' ? theme.colors.blue[2] : theme.colors.blue[3],
+      }
+    }
+  }));
+
+  const { classes: imageClasses } = heroImageStyles();
+
   return (
     <Container size="md" px="xs" py={20}>
       <Stack spacing="xs">
-        <Container fluid>
-          <div className={ImageCredit.hoverwrap}>
+        <div className={ImageCredit.hoverwrap}>
+          <div className={ImageCredit.imageContainer}>
             <Image
               src={cover}
+              alt="Hero Image for the Blog"
+              layout="responsive"
+              width={1600}
+              height={900}
             />
             {coverCredit
               && coverCreditLink
               &&
               <div className={ImageCredit.hovercap}>
-                <Anchor href={coverCreditLink} target="_blank">
+                <a
+                  href={coverCreditLink}
+                  target="_blank"
+                  className={imageClasses.a}
+                >
                   @{coverCredit}
-                </Anchor>
+                </a>
               </div>
             }
           </div>
-        </Container>
+        </div>
 
         <Container mt={10} fluid>
           <Stack spacing={0}>

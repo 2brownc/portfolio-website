@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { useHover } from '@mantine/hooks';
 
@@ -6,7 +7,6 @@ import {
   Paper,
   Text,
   Grid,
-  Image,
   Container,
   Stack,
   Title,
@@ -44,7 +44,12 @@ function BlogCard({
       >
         <Grid>
           <Grid.Col xs={4}>
-            <Image src={cover} />
+            <Image
+              src={cover}
+              width={16}
+              height={9}
+              layout="responsive"
+            />
           </Grid.Col>
           <Grid.Col xs={8}>
             <Stack>
@@ -67,7 +72,6 @@ function BlogCard({
                   size="xs"
                 >
                   {author} ~ {publishedOn}
-
                 </Text>
               </Stack>
               <Text>
