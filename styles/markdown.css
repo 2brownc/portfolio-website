@@ -13,6 +13,7 @@
 
 .markdownCustom pre,
 .markdownCustom code,
-.markdownCustom pre code {
+.markdownCustom pre code,
+.markdownCustom pre code * {
   font-family: "JetBrainsMono NF", monospace !important;
 }
