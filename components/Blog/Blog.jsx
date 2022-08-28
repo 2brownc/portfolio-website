@@ -41,11 +41,45 @@ export default function BlogLayout({
     }
   }));
 
+
+  const blogArticleStyles = createStyles((theme) => ({
+    wrapper: {
+      a: {
+        '&:visited': {
+          color: theme.colorScheme === 'light' ? theme.colors.grape[6] : theme.colors.grape[6],
+        },
+        '&:link': {
+          color: theme.colorScheme === 'light' ? theme.colors.blue[9] : theme.colors.blue[6],
+        }
+      },
+      code: {
+        color: theme.colorScheme === 'light' ? theme.colors.teal[9] : theme.colors.teal[6],
+      },
+      h2: {
+        color: theme.colorScheme === 'light' ? theme.colors.indigo[9] : theme.colors.cyan[5]
+      },
+      h3: {
+        color: theme.colorScheme === 'light' ? theme.colors.indigo[9] : theme.colors.cyan[5]
+      },
+      h4: {
+        color: theme.colorScheme === 'light' ? theme.colors.indigo[9] : theme.colors.cyan[5]
+      },
+      h5: {
+        color: theme.colorScheme === 'light' ? theme.colors.indigo[9] : theme.colors.cyan[5]
+      },
+      h6: {
+        color: theme.colorScheme === 'light' ? theme.colors.indigo[9] : theme.colors.cyan[5]
+      },
+    }
+  }));
+
+  const { classes: articleStyles } = blogArticleStyles();
+
   const { classes: imageClasses } = heroImageStyles();
 
   return (
-    <Container size="md" px="xs" py={20}>
-      <Stack spacing="xs">
+    <Container size="md" px="xs" py={20} className="markdownCustom">
+      <Stack spacing="xs" className={articleStyles.wrapper}>
         <div className={ImageCredit.hoverwrap}>
           <div className={ImageCredit.imageContainer}>
             <Image
@@ -102,7 +136,6 @@ export default function BlogLayout({
                 BlogStyles.blogMain,
                 { "prismjsLight": mantineTheme.colorScheme === 'light' },
                 { "prismjsDark": mantineTheme.colorScheme === 'dark' },
-                "markdownCustom"
               )}
             >
               {children}
