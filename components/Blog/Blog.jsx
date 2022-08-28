@@ -70,6 +70,15 @@ export default function BlogLayout({
       h6: {
         color: theme.colorScheme === 'light' ? theme.colors.indigo[9] : theme.colors.cyan[5]
       },
+      table: {
+        border: theme.colorScheme === 'light' ? theme.colors.gray[4] : theme.colors.gray[7]
+      },
+      ['th']: {
+        backgroundColor: theme.colorScheme === 'light' ? theme.colors.gray[2] : theme.colors.gray[8]
+      },
+      ['tr:nth-child(even)']: {
+        backgroundColor: theme.colorScheme === 'light' ? theme.colors.gray[1] : theme.colors.gray[9]
+      },
     }
   }));
 

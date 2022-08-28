@@ -17,3 +17,19 @@
 .markdownCustom pre code * {
   font-family: "JetBrainsMono NF", monospace !important;
 }
+
+.markdownCustom table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-width: 1px;
+  border-style: solid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdownCustom th {
+  padding: 0.7rem 1rem;
+}
+.markdownCustom td {
+  padding: 0.5rem 1rem;
+}
