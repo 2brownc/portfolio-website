@@ -1,3 +1,7 @@
+.markdownCustom * {
+  font-family: "Merriweather Sans", sans-serif !important;
+}
+
 .markdownCustom h1,
 .markdownCustom h2,
 .markdownCustom h3,
