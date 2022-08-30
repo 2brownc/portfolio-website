@@ -1,8 +1,8 @@
 .blogMain img {
   max-width: 80%;
   margin: auto;
-  border: 1px solid black;  
   display: block;
+  padding: 0.3rem;
 }
 
 .heroImageContainer {
