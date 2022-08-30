@@ -46,7 +46,7 @@ export default function BlogLayout({
     wrapper: {
       a: {
         '&:visited': {
-          color: theme.colorScheme === 'light' ? theme.colors.grape[9] : theme.colors.grape[6],
+          color: theme.colorScheme === 'light' ? theme.colors.grape[9] : theme.colors.grape[8],
         },
         '&:link': {
           color: theme.colorScheme === 'light' ? theme.colors.blue[9] : theme.colors.blue[6],
