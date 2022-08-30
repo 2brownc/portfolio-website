@@ -99,9 +99,7 @@ The special page will be `/pages/blog/[slug].tsx`. The braces indicate it's spec
 
 It's better when you see it:
 
-```jsx
-// /pages/blog/[slug].tsx
-
+```jsx:/pages/blog/[slug].tsx
 import { useRouter } from 'next/router'
 
 export default function Blog() {
@@ -137,9 +135,7 @@ const blogPages = ['article1', 'aritcle2', 'article3'];
 
 Now, with `getStaticPaths()` we can indicate all the possible paths. The paths will be passed as an array of objects. There is an optional property called `fallback` which will be rendered if the web page associated with the original path fails to load.
 
-```jsx
-// /pages/blog/[slug].tsx
-
+```jsx:/pages/blog/[slug].tsx
 import { useRouter } from 'next/router'
 
 export default function Blog() {
@@ -169,9 +165,7 @@ export async function getStaticPaths() {
 
 Now that we know the path of articles we can then generate the articles themselves using `getStaticProps()`. We don't need to use the `router` object anymore because `getStaticProps()` will pass the relevant data to the page component.
 
-```jsx
-// /pages/blog/[slug].tsx
-
+```jsx:/pages/blog/[slug].tsx
 export default function Blog({blog}) {
   return (
     <h1>
@@ -272,9 +266,7 @@ What's happening here:
 
 Now we know the format of the MDX blog page we will configure Contentlayer accordingly:
 
-```ts
-// contentlayer.config.ts
-
+```ts:/contentlayer.config.ts
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
 export const Blog = defineDocumentType(() => ({
@@ -321,9 +313,7 @@ What's happening here:
 
 Now that we have configured Contentlayer, we will make use of it in blog page. Let's go back to `/pages/blog/[slug].tsx`. We can now "import article data" using Contentlayer into our blog page component. A JSON object will be created for each `.mdx` file. The html is passed as a string which can be converted to JSX using `useMDXComponent()` provided by Contentlayer.
 
-```tsx
-// /pages/blog/[slug].tsx
-
+```tsx:/pages/blog/[slug].tsx
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { allBlogs } from 'contentlayer/generated';
 import BlogLayout from '../../components/Blog/Blog';
@@ -363,9 +353,7 @@ Now, we need a page that lists all the blog articles in a single page, kind of l
 
 This is an example of a very simple page listing all the articles in a blog.
 
-```tsx
-// /data/projects/[project].tsx
-
+```tsx:/data/projects/[project].tsx
 import Link from "next/link";
 
 import { allBlogs } from "contentlayer/generated";
@@ -430,7 +418,7 @@ So `_app.tsx` can be used to:
 Let's concentrate on what `/pages/_app.tsx` returns:
 
 ```tsx
-// imports
+//imports
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;

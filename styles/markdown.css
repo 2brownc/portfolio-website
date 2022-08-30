@@ -33,3 +33,8 @@
 .markdownCustom td {
   padding: 0.5rem 1rem;
 }
+
+.markdownCustom .rehype-code-title {
+  font-family: "JetBrainsMono NF", monospace !important;
+  margin-left: 1rem;
+}

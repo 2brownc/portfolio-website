@@ -10,3 +10,8 @@
   width: 1600px;
   height: 900px;
 }
+
+.rehype-code-title {
+  font-family: "JetBrainsMono NF", monospace;
+  margin-left: 1rem;
+}

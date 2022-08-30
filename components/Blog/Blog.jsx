@@ -82,6 +82,9 @@ export default function BlogLayout({
       img: {
         border: `1px solid ${theme.colorScheme === 'light' ? theme.colors.gray[3] : theme.colors.gray[6]}`,
         background: theme.colorScheme === 'light' ? theme.colors.gray[2] : theme.colors.gray[7],
+      },
+      '.rehype-code-title': {
+        color: theme.colorScheme === 'light' ? theme.colors.gray[5] : theme.colors.gray[7],
       }
     }
   }));
