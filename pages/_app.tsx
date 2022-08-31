@@ -13,6 +13,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
+import SideNavbar from '../components/SideNavbar/SideNavbar';
 import { GoogleAnalytics } from "nextjs-google-analytics";
 
 import AppStyles from '../styles/App.module.css';
@@ -99,6 +100,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
             <div className={AppStyles.page}>
               <div className={AppStyles.app}>
                 <Navbar links={headerLinks} />
+                <SideNavbar links={headerLinks} />
                 <div className={AppStyles.main}>
                   <Component {...pageProps} />
                 </div>

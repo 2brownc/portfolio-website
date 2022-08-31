@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { createStyles, Header, Group } from '@mantine/core';
-// import { Autocomplete, Burger } from '@mantine/core';
-// import { useDisclosure } from '@mantine/hooks';
+import { Autocomplete, Burger } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 // import { IconSearch } from '@tabler/icons';
 
 import ColorSchemeSegmentedToggle from '../ColorSchemeToggle/ColorSchemeSegmentedToggle';
@@ -69,7 +69,7 @@ interface HeaderSearchProps {
 }
 
 export default function HeaderSearch({ links }: HeaderSearchProps) {
-  // const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle }] = useDisclosure(false);
   const { classes, cx } = useStyles();
   const router = useRouter();
 
@@ -95,7 +95,7 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
     <Header height={56} className={classes.header}>
       <div className={classes.inner}>
         <Group>
-          {/* <Burger opened={opened} onClick={toggle} size="sm" /> */}
+          <Burger opened={opened} onClick={toggle} size="sm" />
           <Link href="/">
             <div
               style={{
