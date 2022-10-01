@@ -95,6 +95,15 @@ export default function Resume() {
           >
             Github Profile
           </Button>
+          <Button
+            component="a"
+            href="https://www.linkedin.com/in/brown-chinta-77610165/"
+            target="_blank"
+            variant="subtle"
+            compact
+          >
+            Linkedin Profile
+          </Button>
         </Stack>
 
         <Divider />
