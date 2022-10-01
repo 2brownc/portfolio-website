@@ -100,7 +100,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
             <div className={AppStyles.page}>
               <div className={AppStyles.app}>
                 <Navbar links={headerLinks} />
-                <SideNavbar links={headerLinks} />
+                {/* <SideNavbar links={headerLinks} /> */}
                 <div className={AppStyles.main}>
                   <Component {...pageProps} />
                 </div>
