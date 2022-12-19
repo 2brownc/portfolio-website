@@ -41,6 +41,7 @@
     "nextjs-google-analytics": "^2.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-particles": "^2.6.0",
     "reading-time": "^1.5.0",
     "rehype-accessible-emojis": "^0.3.2",
     "rehype-autolink-headings": "^6.1.1",
@@ -49,7 +50,9 @@
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "sass": "^1.54.5",
-    "sharp": "^0.30.7"
+    "sharp": "^0.30.7",
+    "tsparticles": "^2.6.0",
+    "tsparticles-engine": "^2.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
