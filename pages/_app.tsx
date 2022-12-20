@@ -10,6 +10,7 @@ import {
   MantineThemeOverride,
 } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { useDisclosure } from '@mantine/hooks';
 
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
@@ -26,6 +27,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
+  const [opened, { toggle }] = useDisclosure(false);
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
@@ -99,8 +101,8 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           <NotificationsProvider>
             <div className={AppStyles.page}>
               <div className={AppStyles.app}>
-                <Navbar links={headerLinks} />
-                {/* <SideNavbar links={headerLinks} /> */}
+                <Navbar links={headerLinks} opened={opened} toggle={toggle} />
+                <SideNavbar links={headerLinks} opened={opened} toggle={toggle} />
                 <div className={AppStyles.main}>
                   <Component {...pageProps} />
                 </div>

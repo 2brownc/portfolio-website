@@ -41,6 +41,14 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  hamburgerMenuToggle: {
+    display: 'none',
+    [theme.fn.smallerThan('md')]: {
+      display: 'inline',
+    },
+  },
+
+
   link: {
     display: 'block',
     lineHeight: 1,
@@ -66,15 +74,17 @@ const useStyles = createStyles((theme) => ({
 
 interface HeaderSearchProps {
   links: { link: string; label: string }[];
+  opened: boolean;
+  toggle: any;
 }
 
-export default function HeaderSearch({ links }: HeaderSearchProps) {
-  const [opened, { toggle }] = useDisclosure(false);
+export default function HeaderSearch({ links, opened, toggle }: HeaderSearchProps) {
+  console.log("toggle type", toggle);
   const { classes, cx } = useStyles();
   const router = useRouter();
 
   const items = links.map((link) => (
-    <Link href={link.link} key={link.link}>
+    <Link href={link.link} key={link.link} >
       <a
         className={
           cx(classes.link,
@@ -88,14 +98,20 @@ export default function HeaderSearch({ links }: HeaderSearchProps) {
       >
         {link.label}
       </a>
-    </Link>
+    </Link >
   ));
+
 
   return (
     <Header height={56} className={classes.header}>
       <div className={classes.inner}>
         <Group>
-          <Burger opened={opened} onClick={toggle} size="sm" />
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            size="sm"
+            className={classes.hamburgerMenuToggle}
+          />
           <Link href="/">
             <div
               style={{

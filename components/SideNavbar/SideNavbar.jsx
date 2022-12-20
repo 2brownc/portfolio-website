@@ -12,6 +12,7 @@ import {
   ActionIcon,
   Tooltip,
 } from '@mantine/core';
+/*
 import {
   IconBulb,
   IconUser,
@@ -20,6 +21,9 @@ import {
   IconPlus,
   IconSelector,
 } from '@tabler/icons';
+*/
+
+import ColorSchemeSegmentedToggle from '../ColorSchemeToggle/ColorSchemeSegmentedToggle';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -125,7 +129,7 @@ const useStyles = createStyles((theme) => ({
   { icon: IconBulb, label: 'Activity', notifications: 3 },
   { icon: IconCheckbox, label: 'Tasks', notifications: 4 },
   { icon: IconUser, label: 'Contacts' },
-];*/
+];
 
 const collections = [
   { emoji: '👍', label: 'Sales' },
@@ -138,58 +142,68 @@ const collections = [
   { emoji: '🙈', label: 'Debts' },
   { emoji: '💁‍♀️', label: 'Customers' },
 ];
+*/
 
-export default function SideNavbar({ links }) {
+export default function SideNavbar({ links, opened, toggle }) {
   const router = useRouter();
   const { classes, cx } = useStyles();
 
   const mainLinks = links.map((link) => (
     <Link href={link.link} key={link.key}>
-      <UnstyledButton className={cx(classes.mainLink,
-        {
-          [classes.linkActive]: link.link === '/'
-            ? router.pathname === link.link
-            : router.pathname.startsWith(link.link),
-        }
-      )}>
+      <UnstyledButton onClick={toggle}
+        className={cx(classes.mainLink,
+          {
+            [classes.linkActive]: link.link === '/'
+              ? router.pathname === link.link
+              : router.pathname.startsWith(link.link),
+          }
+        )}>
         <div className={classes.mainLinkInner}>
           <span>{link.label}</span>
         </div>
       </UnstyledButton>
     </Link>
   ));
-
-  const collectionLinks = collections.map((collection) => (
-    <a
-      href="/"
-      onClick={(event) => event.preventDefault()}
-      key={collection.label}
-      className={classes.collectionLink}
-    >
-      <span style={{ marginRight: 9, fontSize: 16 }}>{collection.emoji}</span> {collection.label}
-    </a>
-  ));
-
+  /*
+    const collectionLinks = collections.map((collection) => (
+      <a
+        href="/"
+        onClick={(event) => event.preventDefault()}
+        key={collection.label}
+        className={classes.collectionLink}
+      >
+        <span style={{ marginRight: 9, fontSize: 16 }}>{collection.emoji}</span> {collection.label}
+      </a>
+    ));
+  */
   return (
-    <Navbar height={700} width={{ sm: 300 }} p="md" className={classes.navbar}>
-      {/*
+    opened &&
+    (
+      <Navbar
+        height={700}
+        width={{ sm: 300 }}
+        p="md"
+        className={classes.navbar}
+        sx={(theme) => ({ zIndex: 999 })}
+      >
+        {/*
       <Navbar.Section className={classes.section}>
       </Navbar.Section>
+
+        < TextInput
+          placeholder="Search"
+          icon={< IconSearch size={12} stroke={1.5} />}
+          rightSectionWidth={70}
+          rightSection={< Code className={classes.searchCode} > Ctrl + K</Code >}
+          styles={{ rightSection: { pointerEvents: 'none' } }}
+          mb="sm"
+        />
+
       */}
-
-      <TextInput
-        placeholder="Search"
-        icon={<IconSearch size={12} stroke={1.5} />}
-        rightSectionWidth={70}
-        rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
-        styles={{ rightSection: { pointerEvents: 'none' } }}
-        mb="sm"
-      />
-
-      <Navbar.Section className={classes.section}>
-        <div className={classes.mainLinks}>{mainLinks}</div>
-      </Navbar.Section>
-
+        <Navbar.Section className={classes.section}>
+          <div className={classes.mainLinks}>{mainLinks}</div>
+        </Navbar.Section>
+        {/*
       <Navbar.Section className={classes.section}>
         <Group className={classes.collectionsHeader} position="apart">
           <Text size="xs" weight={500} color="dimmed">
@@ -203,6 +217,12 @@ export default function SideNavbar({ links }) {
         </Group>
         <div className={classes.collections}>{collectionLinks}</div>
       </Navbar.Section>
-    </Navbar>
+    */}
+
+        <Navbar.Section className={classes.section} >
+          <ColorSchemeSegmentedToggle />
+        </Navbar.Section>
+      </Navbar >
+    )
   );
 }
