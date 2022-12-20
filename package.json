@@ -52,7 +52,8 @@
     "sass": "^1.54.5",
     "sharp": "^0.30.7",
     "tsparticles": "^2.6.0",
-    "tsparticles-engine": "^2.6.0"
+    "tsparticles-engine": "^2.6.0",
+    "tsparticles-preset-links": "^2.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
